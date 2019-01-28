@@ -8,6 +8,7 @@ import time
 import random
 
 # The inventory as a list so I can remove item's
+global inv
 inv = ["laser cutter", "blowtorch", "welding tool", "wrench", "gps"]
 
 # Made variables global so I can reference inside functions
@@ -39,7 +40,7 @@ def intro():
     time.sleep(2)
     print("is this thing on?")
     time.sleep(2)
-    print("to whomever receives this message please listen carefully.")
+    print("to whoever receives this message please listen carefully.")
     time.sleep(2)
     print("STAY")
     time.sleep(1)
@@ -61,7 +62,7 @@ def intro2():
     time.sleep(3)
     print("today is monday, the date is the 16th of may 2029")
     time.sleep(3)
-    print("1 weeks ago we received a stress signal from the ground team on titan")
+    print("1 week ago we received a stress signal from the ground team on titan")
     time.sleep(3)
     print("Our mission was to investigate and extract them back to the Orbiter")
     time.sleep(2)
@@ -194,6 +195,7 @@ def rover1():
     checkPath(choice)  # Checking their input
     print("Hours Left [", hoursLeft, "]")
     time.sleep(2)
+    rover2()
 
 
 # Rover part 2 narrative
@@ -252,6 +254,7 @@ def rover2():
     time.sleep(2)
     print("Hours Left [", hoursLeft, "]")  # Displaying hours left variable
     timeCheck()  # Calling time check
+    rover3()
 
 
 # Rover part 3 narrative
@@ -319,9 +322,9 @@ def rover3():
         print()
         time.sleep(1)
         print("Apollo: Doesn't matter, we ran out of daylight, we wont make it")
-    else:
-        return
+
     timeCheck()  # Check if player has time
+    bunker1()
 
 
 # Bunker part 1 narrative
@@ -1180,7 +1183,7 @@ def endingPandora3():
 # Pandora ending S
 def endingPandora4():
     print()
-    time.sleep(3)
+    time.sleep(1)
     print("*Still recording*")
     print()
     time.sleep(3)
@@ -1668,6 +1671,8 @@ def chooseQuicksand():
 
 # Enging breakdown sequence
 def chooseEngine():
+    print()
+    print(inv)
     engine = ""  # Assigning variable
     global hoursLeft  # Referencing global variable
     while engine != "laser cutter" and engine != "welding tool":  # Check if input is valid, if not repeat
@@ -1758,12 +1763,16 @@ def checkPath2(chosenPath2):
         print("Apollo: Fine, start driving")
         time.sleep(2)
         print(" We better hope we make it in time")
+        print()
+        timeCheck()
 
 
 # Time check fail state
 def timeCheck():
     global hoursLeft  # Referencing global variable
+    global inv
     if hoursLeft == 0:  # Initiate fail state
+        inv = ["laser cutter", "blowtorch", "welding tool", "wrench", "gps"]
         print()
         time.sleep(2)
         print("Hours Left [", hoursLeft, "]")  # Display hours left
@@ -1778,9 +1787,6 @@ def timeCheck():
             print()
             print("*Starting from checkpoint*")
             rover1()  # Restart sequence
-        else:
-            return
-        return
 
 
 # Game over state
@@ -1826,15 +1832,14 @@ def gameOver():
             bunker1()  # Restart from bunker sequence
 
 
-intro()  # Calling intro part 1 function
+#intro()  # Calling intro part 1 function
 
-name = input("What is your name?: ").lower()  # Player name input
+#name = input("What is your name?: ").lower()  # Player name input
+name = "Liam"
 
-intro2()  # Calling intro part 2 function
-part1()  # Calling part 1 function
+#intro2()  # Calling intro part 2 function
+#part1()  # Calling part 1 function
 rover1()  # Calling rover part 1 function
-rover2()  # Calling rover part 2 function
-rover3()  # Calling rover part 3 function
 bunker1()  # Calling bunker part 1 function
 bunker2()  # Calling bunker part 2 function
 gameOver()  # Calling game over function
